@@ -39,7 +39,7 @@ jobs:
               environmentType=${{ inputs.environmentType }}
               reviewApiUrl=${{ inputs.reviewApiUrl }}
               reviewApiKey=${{ secrets.reviewApiKey }}
-            deploymentMode: Validate
+             deploymentMode: Validate
         - if: inputs.environmentType == 'Production'
           uses: azure/arm-deploy@v1
           name: Run what-if
