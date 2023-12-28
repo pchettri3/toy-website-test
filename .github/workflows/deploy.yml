@@ -37,6 +37,8 @@ jobs:
             template: ./deploy/main.bicep
             parameters: >
               environmentType=${{ inputs.environmentType }}
+              reviewApiUrl=${{ inputs.reviewApiUrl }}
+              reviewApiKey=${{ secrets.reviewApiKey }}
             deploymentMode: Validate
         - if: inputs.environmentType == 'Production'
           uses: azure/arm-deploy@v1
@@ -47,6 +49,8 @@ jobs:
             template: ./deploy/main.bicep
             parameters: >
               environmentType=${{ inputs.environmentType }}
+              reviewApiUrl=${{ inputs.reviewApiUrl }}
+              reviewApiKey=${{ secrets.reviewApiKey }}
            additionalArguments: --what-if
 deploy:
     needs: validate
@@ -72,6 +76,8 @@ deploy:
           template: ./deploy/main.bicep
           parameters: >
             environmentType=${{ inputs.environmentType }}
+            tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+            subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
 
 smoke-test:
